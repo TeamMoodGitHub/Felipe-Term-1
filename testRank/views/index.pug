@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  h1 Input Summoner Name
+    form(action='/users', method='POST')
+      input(type='text', placeholder='name', name='name')
+      button(type='submit') Submit
