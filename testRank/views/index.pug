@@ -2,8 +2,8 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p This is the summoner Rank!
   h1 Input Summoner Name
-    form(action='/users', method='POST')
+    form(action='/rank', method='POST')
       input(type='text', placeholder='name', name='name')
       button(type='submit') Submit

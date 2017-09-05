@@ -5,14 +5,14 @@ var bodyParser = require('body-parser');
 var async = require('async');
 var router = express.Router();
 var app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:false}));
+router.use(bodyParser.json());
+router.use(bodyParser.urlencoded({extended:false}));
 
 var host = 'https://na1.api.riotgames.com/lol/';
 var getIdUrl = 'summoner/v3/summoners/by-name/';
 var getMatchListUrl = 'match/v3/matchlists/by-account/';
 var getRankLpUrl = 'league/v3/leagues/by-summoner/';
-var apiKey = '?api_key=RGAPI-041c8039-2373-4827-8927-0fe9b31b217e';
+var apiKey = '?api_key=RGAPI-6937353f-e3b0-486c-9017-92dc9b89e978';
 
 
 var matchInfo;
@@ -37,10 +37,6 @@ var getRankLp = function(summonerId, callback){
       //console.log(playerInfo);
       var leagueInfo;
 
-      playerInfo.forEach(function(object){});
-      console.log(leagueInfo);
-
-      /*
       if(playerInfo[0]["queue"] == "RANKED_SOLO_5x5"){
         leagueInfo = playerInfo[0];
       }
@@ -55,7 +51,7 @@ var getRankLp = function(summonerId, callback){
       });
       var rank = player[0].rank;
       var lp = player[0].leaguePoints;
-      //callback(null,rank,tier,lp);*/
+      callback(null,rank,tier,lp);
     }
     else{
       console.log(error);
@@ -77,8 +73,8 @@ var getSummonerId = function(summonerName, callback){
 }
 
 
-/* GET users listing. */
-router.post('/users', (req, res, next) => {
+/* GET  listing. */
+router.post('/', (req, res, next) => {
   var user = req.body.name;
   async.waterfall([
     function(callback){
@@ -94,8 +90,6 @@ router.post('/users', (req, res, next) => {
   function(err, string){
     console.log(string);
   });
-
-  next();
 });
 
 module.exports = router;
