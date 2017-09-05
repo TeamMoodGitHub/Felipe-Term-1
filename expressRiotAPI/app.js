@@ -13,17 +13,13 @@ var host = 'https://na1.api.riotgames.com/lol/';
 var getIdUrl = 'summoner/v3/summoners/by-name/';
 var getMatchListUrl = 'match/v3/matchlists/by-account/';
 var getRankLpUrl = 'league/v3/leagues/by-summoner/';
-var apiKey = '?api_key=RGAPI-8117e2c1-a019-4faa-877d-545d6c91519c';
+var apiKey = '?api_key=RGAPI-aa43a194-b04c-4133-ac09-7cddfa3e48d7';
 
-/*var rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-*/
 
 var matchInfo;
 
 var getMatchList = function(summonerId, callback) {
+  console.log(host + getMatchListUrl + summonerId + apiKey);
   request(host + getMatchListUrl + summonerId + apiKey, function(error, response, body){
     if(!error && response.statusCode == 200){
       var matchInfo = JSON.parse(body);
@@ -40,7 +36,8 @@ var getRankLp = function(summonerId, callback){
     if(!error && response.statusCode == 200){
       var playerInfo = JSON.parse(body);
       var leagueInfo;
-      if(playerInfo[0]["queue"] === "RANKED_SOLO_5X5"){
+
+      if(playerInfo[0]["queue"] == "RANKED_SOLO_5x5"){
         leagueInfo = playerInfo[0];
       }
       else{
@@ -54,6 +51,7 @@ var getRankLp = function(summonerId, callback){
       });
       var rank = player[0].rank;
       var lp = player[0].leaguePoints;
+      console.log(rank + lp + tier);
       callback(null,rank,tier,lp);
     }
     else{
@@ -66,6 +64,7 @@ var getSummonerId = function(summonerName, callback){
   request(host + getIdUrl + summonerName + apiKey, function(error, response, body){
       if(!error && response.statusCode == 200){
         info = JSON.parse(body);
+        console.log(info.id);
         callback(null,info.id);
       }
       else{
