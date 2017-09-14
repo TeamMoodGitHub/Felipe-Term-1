@@ -7,6 +7,7 @@ block content
   h1 #{tier} #{rank} #{lp} LP
   h1(id='inGame') #{inGame}
   script.
+    var summonerName = !{JSON.stringify(summonerName)}; 
     setInterval(function(){
       fetch( "/rank", {
         method: 'get'
