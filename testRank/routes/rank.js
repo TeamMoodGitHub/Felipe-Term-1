@@ -13,7 +13,7 @@ var getIdUrl = 'summoner/v3/summoners/by-name/';
 var getMatchListUrl = 'match/v3/matchlists/by-account/';
 var getRankLpUrl = 'league/v3/leagues/by-summoner/';
 var getSpectator = '/spectator/v3/active-games/by-summoner/';
-var apiKey = '?api_key=RGAPI-ffb35818-611f-437f-989b-138615ccd6e5';
+var apiKey = '?api_key=RGAPI-b458ec80-adff-41b8-abcd-774f17b68039';
 
 var summonerId;
 var matchInfo;
