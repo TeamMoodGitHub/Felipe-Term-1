@@ -2,15 +2,35 @@
 extends layout
 
 block content
-  h1= title
+  h1 #{summonerName}
   p Welcome to #{title}
   h1 #{tier} #{rank} #{lp} LP
   h1(id='inGame') #{inGame}
+  input#summonerName(type = 'hidden', value=summonerName)
+    
+  body
+    h1 GAMES
+    
+    
   script.
-    var summonerName = !{JSON.stringify(summonerName)}; 
+    var summonerName = !{JSON.stringify(summonerName)};
+    
+    var matches = !{JSON.stringify(matches)};
+    for(i = 0; i < matches.length; i++){
+      var h = document.createElement("P");
+      var t = document.createTextNode("Game 1 - Kills: " + matches[i]["kills"] + " Deaths: " + matches[i]["deaths"] + " Assists: " + matches[i]["assists"]);
+      h.appendChild(t);
+      document.body.appendChild(h);
+    }
+    
     setInterval(function(){
-      fetch( "/rank", {
-        method: 'get'
+      console.log(summonerName);
+      fetch( "/rank/refresh", {
+        method: 'POST', 
+        body: JSON.stringify({summonerName:summonerName}),
+        headers: {
+          'Content-Type': 'application/json'
+        }
         }).then(function(res){
           res.json().then((json) => document.getElementById('inGame').innerHTML = json.a);
           }).catch(function(err){
