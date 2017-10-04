@@ -18,7 +18,7 @@ block content
     var matches = !{JSON.stringify(matches)};
     for(i = 0; i < matches.length; i++){
       var h = document.createElement("P");
-      var t = document.createTextNode("Game 1 - Kills: " + matches[i]["kills"] + " Deaths: " + matches[i]["deaths"] + " Assists: " + matches[i]["assists"]);
+      var t = document.createTextNode("Game " + (i + 1) + " - Kills: " + matches[i]["kills"] + " Deaths: " + matches[i]["deaths"] + " Assists: " + matches[i]["assists"]);
       h.appendChild(t);
       document.body.appendChild(h);
     }
